@@ -1,0 +1,6 @@
+invoice_id,vendor,amount,status
+INV-2002,XYZ Corp,142500.0,PENDING
+INV-2003,Nova Inc,650000.0,PENDING
+INV-2010,Jupiter Steel,500000.0,PENDING
+INV-2012,Kaveri Chemicals,975000.0,PENDING
+INV-2014,Global Office Mart,210000.0,PENDING
