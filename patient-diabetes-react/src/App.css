@@ -1,0 +1,547 @@
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Page ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  /* 3% side padding scales with viewport; never collapses to zero */
+  padding: 32px 3%;
+}
+
+/* ===== Page layout ===== */
+.page {
+  /* 94% width gives comfortable margins; 1600px cap prevents excessive
+     line lengths on very wide monitors */
+  width: 94%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ===== Page header ===== */
+.page-header {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.page-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2f4e;
+  line-height: 1.2;
+}
+
+.page-header .subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #6b7a8d;
+}
+
+/* ===== Card ===== */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* ===== Search form panel ===== */
+.search-panel {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid #e8ecf2;
+  background: #fafbfd;
+}
+
+.search-panel .panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 16px;
+}
+
+/* 3 fields + button on one row */
+.form-grid {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.form-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-field input,
+.form-field select {
+  height: 38px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 0 12px;
+  color: #2d3748;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-field input::placeholder {
+  color: #a0aec0;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: #4a90d9;
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+}
+
+/* Search button */
+.btn-search {
+  height: 38px;
+  padding: 0 24px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-search:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.btn-search:disabled {
+  background-color: #93c5fd;
+  cursor: default;
+}
+
+/* ===== Results panel ===== */
+.results-panel {
+  padding: 0;
+}
+
+/* Status bar above table */
+.results-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 28px;
+  background: #f7f9fc;
+  border-bottom: 1px solid #e8ecf2;
+  font-size: 13px;
+  color: #4a5568;
+}
+
+.results-meta .count {
+  font-weight: 600;
+}
+
+/* Loading / empty / error states */
+.state-box {
+  padding: 48px 28px;
+  text-align: center;
+  font-size: 14px;
+  color: #718096;
+}
+
+.state-box.error {
+  color: #c53030;
+}
+
+.state-box .state-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.state-box p {
+  line-height: 1.5;
+}
+
+/* ===== Table scroll wrapper ===== */
+/* Wraps only the table so the card's border-radius is unaffected.
+   overflow-x: auto enables horizontal scroll on narrow viewports
+   without affecting the search panel above it. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== Table ===== */
+table {
+  /* min-content keeps the table from collapsing below its natural width
+     inside the scroll wrapper */
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f7f9fc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+th {
+  /* Reduced from 20px → 14px horizontal to save column space across 7 cols */
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+td {
+  /* Reduced from 20px → 14px horizontal, matching th */
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #2d3748;
+  border-bottom: 1px solid #edf2f7;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #ebf4ff;
+}
+
+td.encounter-id {
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 13px;
+  color: #4a5568;
+  /* Reserve enough space so the ID never clips */
+  min-width: 120px;
+}
+
+td.score {
+  font-weight: 600;
+  color: #2d3748;
+  min-width: 80px;
+}
+
+/* Enough room for "FOLLOW_UP_SCHEDULED" — the longest status value */
+td.status-cell,
+td.status-none {
+  min-width: 170px;
+}
+
+/* Enough room for "Oct 24, 2026, 09:15 AM UTC" */
+td.timestamp {
+  min-width: 200px;
+  font-size: 13px;
+}
+
+/* ===== Risk badges ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge-HIGH {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.badge-MEDIUM {
+  background-color: #feebc8;
+  color: #7b341e;
+}
+
+.badge-LOW {
+  background-color: #c6f6d5;
+  color: #276749;
+}
+
+/* ===== Disclaimer ===== */
+.disclaimer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: #a0aec0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ===== Intervention status in search table ===== */
+.status-cell {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d3748;
+  letter-spacing: 0.3px;
+}
+
+.status-none {
+  font-size: 13px;
+  color: #a0aec0;
+}
+
+/* ===== Encounter ID as clickable link ===== */
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 13px;
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link-btn:hover {
+  color: #1d4ed8;
+}
+
+/* ===== Back link ===== */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  color: #4a5568;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #2563eb;
+}
+
+/* ===== Intervention update page ===== */
+
+/* Blue title bar (same feel as search panel) */
+.update-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background-color: #1e40af;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Read-only encounter summary strip */
+.update-summary {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e8ecf2;
+  background: #f7f9fc;
+}
+
+.summary-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 24px;
+  border-right: 1px solid #e8ecf2;
+}
+
+.summary-row:last-child {
+  border-right: none;
+}
+
+.summary-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.summary-value {
+  font-size: 14px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.summary-value.mono {
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 13px;
+}
+
+/* Form panel inside the card */
+.update-form-panel {
+  padding: 24px 28px 28px;
+  border-bottom: 1px solid #e8ecf2;
+}
+
+/* 2-column grid for Status + Assigned To */
+.update-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Individual labelled field */
+.update-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.update-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.update-field input,
+.update-field select,
+.update-field textarea {
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 9px 12px;
+  color: #2d3748;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  resize: vertical;
+}
+
+.update-field input:focus,
+.update-field select:focus,
+.update-field textarea:focus {
+  border-color: #4a90d9;
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+}
+
+/* Update button row */
+.update-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btn-update {
+  height: 40px;
+  padding: 0 32px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-update:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.btn-update:disabled {
+  background-color: #93c5fd;
+  cursor: default;
+}
+
+/* ===== Result / error box ===== */
+.update-result {
+  margin: 24px 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.update-result--success {
+  border-color: #9ae6b4;
+}
+
+.update-result--error {
+  border-color: #feb2b2;
+}
+
+.update-result-title {
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.update-result--success .update-result-title {
+  background: #f0fff4;
+  color: #276749;
+}
+
+.update-result--error .update-result-title {
+  background: #fff5f5;
+  color: #9b2c2c;
+}
+
+.update-result-message {
+  padding: 12px 18px 16px;
+  font-size: 13px;
+  color: #742a2a;
+  background: #fff5f5;
+  line-height: 1.6;
+}
+
+/* Table inside success result */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: #fff;
+}
+
+.result-table tr {
+  border-bottom: 1px solid #f0fff4;
+}
+
+.result-table tr:last-child {
+  border-bottom: none;
+}
+
+.result-key {
+  padding: 9px 18px;
+  font-weight: 600;
+  color: #4a5568;
+  width: 160px;
+  background: #f0fff4;
+}
+
+.result-val {
+  padding: 9px 18px;
+  color: #2d3748;
+}

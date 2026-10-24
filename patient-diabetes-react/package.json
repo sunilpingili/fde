@@ -1,0 +1,26 @@
+{
+  "name": "patient-diabetes-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "cd ../healthcare-readmission-mvp && uvicorn main:app --reload --port 8004",
+    "start": "concurrently --names \"API,UI\" --prefix-colors \"blue,green\" \"npm run dev:api\" \"npm run dev\"",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "oxlint": "^1.88.0",
+    "vite": "^8.3.4"
+  }
+}
